@@ -2,15 +2,13 @@
 #  Session bootstrap   
 #=====================
 if [[ -o interactive ]]; then
-
   # -- Launch TMUX
   if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
     tmux attach -t MAIN || tmux new -s MAIN
   fi
 
   # -- ¯\_(ツ)_/¯
-  pokego --name charmeleon --no-title # charizard - jigglypuff - eevee - delcatty - charmeleon - 
-  # pokego -r 6,1,5,8,2,7 -no-title -s # 1,3,5,7
+  pokego --name eevee --no-title # jigglypuff - eevee - delcatty - charmeleon - [## -r 6,1,5,8,2,7 -no-title -s # 1,3,5,7]
   # fastfetch
 fi
 
@@ -19,9 +17,12 @@ fi
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
-# -- Source/load completions  
+
+#[ Completions ]
+fpath+=~/.zfunc   # Custom-completions
+
 autoload -Uz compinit
-compinit -C        # fast, safe if you trust your plugins
+compinit -C       # fast, safe if you trust your plugins
 # _comp_options+=(globdots)
 
 
@@ -132,18 +133,12 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 
 #[Shell integration]
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
 
 
 #==============
 #  Aliases
 #==============
-
-# Navigation (zoxide)
-# alias .='z ../'
-# alias ..='z ../../'
-# alias ...='z ../../../'
-# alias ....='z ../../../../'
 
 # Listing (eza)
 alias c='clear'
@@ -196,11 +191,11 @@ alias logout-user='pkill Hyprland || pkill tmux || loginctl terminate-user $USER
 #  MISC
 #==========
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
+export ARCHFLAGS="-arch $(uname -m)"

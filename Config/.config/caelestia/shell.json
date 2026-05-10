@@ -28,9 +28,9 @@
       }
     },
     "transparency": {
-      "enabled": false,
-      "base": 0.85,
-      "layers": 0.4
+      "enabled": true,
+      "base": 0.5532320462740384,
+      "layers": 0.4007568359375
     }
   },
   "general": {
@@ -106,14 +106,14 @@
       "position": "bottom-right",
       "invertColors": false,
       "background": {
-        "enabled": false,
-        "opacity": 0.7,
+        "enabled": true,
+        "opacity": 0.6997696314102564,
         "blur": false
       },
       "shadow": {
         "enabled": false,
-        "opacity": 0.7,
-        "blur": 0.4
+        "opacity": 0.5973657852564103,
+        "blur": 0.2998798076923077
       }
     },
     "visualiser": {
@@ -227,8 +227,8 @@
     "excludedScreens": []
   },
   "border": {
-    "thickness": 8,
-    "rounding": 15
+    "thickness": 10,
+    "rounding": 10
   },
   "dashboard": {
     "enabled": true,
@@ -242,7 +242,7 @@
       "showCpu": true,
       "showMemory": true,
       "showStorage": true,
-      "showNetwork": true
+      "showNetwork": false
     }
   },
   "controlCenter": {},
@@ -283,8 +283,7 @@
       "dosbox",
       "org.gnome.Extensions",
       "org.gnome.Connections",
-      "org.gnome.Music",
-      "nwg-look"
+      "org.gnome.Music"
     ],
     "useFuzzy": {
       "apps": false,
@@ -458,7 +457,7 @@
     "expire": true,
     "fullscreen": "on",
     "defaultExpireTimeout": 8000,
-    "clearThreshold": 0.3,
+    "clearThreshold": 0.4,
     "expandThreshold": 20,
     "actionOnClick": false,
     "groupPreviewNum": 6,
@@ -586,7 +585,7 @@
         "to": "YT Music"
       }
     ],
-    "showLyrics": false,
+    "showLyrics": true,
     "lyricsBackend": "NetEase"
   },
   "paths": {

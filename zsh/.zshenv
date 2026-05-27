@@ -15,11 +15,22 @@ export MANPAGER="nvim +Man!"
 # export QT_IM_MODULE=xim
 # export XMODIFIERS=@im=none
 
-#[ PATH ]
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
-# export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/env_01/bin:$PATH"
+#=============
+#   PATH
+#=============
+#[ PATH - :$HOME/env_01/bin: ]
+export CARGO_HOME="$HOME/.local/bin/cargo"
+export RUSTUP_HOME="$HOME/.local/bin/rustup"
+export GOPATH="$HOME/.local/bin/go" # -- GOLANG PATH
+export GOBIN="$HOME/.local/bin/go/bin"
+
+export PATH="$HOME/.local/bin:$HOME/.local/share/cargo/bin:$GOBIN:$PATH"
+
+
+# . "$HOME/.deno/env"
+. "$HOME/.local/bin/cargo/env"
 
 CORN="$HOME/Videos/yt-dlp/._tmp/.corn"
-
-export SPOTIPY_CLIENT_ID=78c53df1b3394f31acc9944fb7231b0b
-export SPOTIPY_CLIENT_SECRET=5c54fdda448141ed91150ddb63475857
+EXTV="/run/media/ola-x/game-drive/Videos/yt-dlp"
+EXTD="/run/media/ola-x/game-drive/Videos/yt-dlp/._tmp/.corn"
+EXTD="/run/media/ola-x/game-drive/Downloads"

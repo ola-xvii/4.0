@@ -8,14 +8,14 @@ if [[ -o interactive ]]; then
   fi
 
   # -- ¯\_(ツ)_/¯
-  pokego --name eevee --no-title # jigglypuff - eevee - delcatty - charmeleon - [## -r 6,1,5,8,2,7 -no-title -s # 1,3,5,7]
+  pokego -r 6,1,5,8,2,7 -no-title -s ## --name eevee --no-title # jigglypuff - eevee - delcatty - charmeleon - [##  # 1,3,5,7]
   # fastfetch
 fi
 
 # # -- Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 
 #[ Completions ]
@@ -48,23 +48,20 @@ autoload -Uz _zinit
 #   PLUGINS 
 # ============
 #[Powerlevel10k]
-# zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# -- Starship
-zinit ice as"command" from"gh-r" \
-  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-  atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+# # -- Starship
+# zinit ice as"command" from"gh-r" \
+#   atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+#   atpull"%atclone" src"init.zsh"
+# zinit light starship/starship
 
 # -- ZVM/zsh-vi-mode
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 
-# -- Syntax-highlighting]
-zinit light zdharma-continuum/fast-syntax-highlighting
-
 # -- zsh plugins
 zinit light zsh-users/zsh-completions
-# zinit light zsh-users/zsh-syntax-highlighting 
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # -- zsh-autosuggestions
 zinit light zsh-users/zsh-autosuggestions
@@ -75,24 +72,26 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#E3E4FA"
 zinit light zsh-users/zsh-history-substring-search
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=#39FF14'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=#0D1117'
-
+#-- -- -- 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
+#-- -- -- 
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # -- Tools (lazy)
 zinit snippet OMZL::completion.zsh  
-zinit snippet OMZL::key-bindings.zsh
+zinit snippet OMZL::directories.zsh
 
 zinit snippet OMZP::zoxide
+zinit snippet OMZP::rust
+zinit snippet OMZP::systemd
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::command-not-found
 
-
 # -- Load 
 zinit cdreplay -q
+
 
 # -- Keybinds
 for map in emacs viins vicmd; do
@@ -100,13 +99,18 @@ for map in emacs viins vicmd; do
   bindkey -M $map '^[[4~' end-of-line         # End
   bindkey -M $map '^[[3~' delete-char         # Delete
 
+  bindkey -M $map '^[[5~' up-line-or-history
+  bindkey -M $map '^[[6~' down-line-or-history
+  
+  bindkey -M $map '^[[Z' reverse-menu-complete
+
   bindkey -M $map '^H' backward-kill-word 
   bindkey -M $map '^Z' undo
 done
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
 #============
@@ -134,21 +138,34 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #[Shell integration]
 eval "$(zoxide init zsh)"
-
+# eval "$(starship init zsh)"
 
 #==============
 #  Aliases
 #==============
+alias -- -='cd -'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 
-# Listing (eza)
 alias c='clear'
 alias x='exit'
-alias l='eza -lh --icons=auto'
-alias ls='eza -G --icons=auto'
-alias lsa='eza -Ga --icons=auto'
-alias ll='eza -lha --icons=auto --sort=name --group-directories-first'
-alias ld='eza -lhD --icons=auto'
-alias lt='eza --icons=auto --tree'
+
+# Listing (eza)
+# -- [Check if eza is installed]
+if command -v eza >/dev/null; then
+  alias l='eza -lh --icons=auto'
+  alias ls='eza -G --icons=auto'
+  alias lsa='eza -Ga --icons=auto'
+  alias ll='eza -lha --icons=auto --sort=name --group-directories-first'
+  alias ld='eza -lhD --icons=auto'
+  alias lt='eza --icons=auto --tree'
+else 
+  alias ls='ls --color'
+  alias ll='ls -lh --color'
+  alias la='ls --color'
+fi
 
 # Trash
 alias tp='trash-put'

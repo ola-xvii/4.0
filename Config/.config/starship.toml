@@ -2,19 +2,28 @@ format = """
 $os\
 $username\
 $directory\
-$docker_context\
+$git_branch\
+$git_state\
+$git_status\
+$line_break\
+$character"""
+
+right_format = """
+$nix_shell$docker_context\
+$lua\
+$nodejs\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$meson\
 $python\
 $golang\
 $rust\
 $cpp\
 $c\
-$git_branch\
-$git_state\
-$git_status\
 $cmd_duration\
-$line_break\
-$character"""
-
+"""
 # right_format = """
 # [](vesper)\
 # $battery\
@@ -24,7 +33,7 @@ $character"""
 palette = 'welp'
 
 [palettes.welp]
-color_fg0 = '#e5e1e7'
+color_fg0 = '#F8F9FA'
 color_bg3 = '#665c54'
 color_blue = '#00CCFF'
 color_nblue = '#1BFFFF'
@@ -79,25 +88,28 @@ style_root = 'fg:color_orange'
 format = '[ $user ]($style)'
 
 [directory]
-style = 'fg:color_yellow'
-format = '[ $path ]($style)'
+style = 'bold fg:#FDFD96'
+format = '[ $path ]($style)[$read_only](bold fg:#4B4B4B)'
 truncation_length = 3
 truncation_symbol = '…/'
+read_only = '  '
 home_symbol = ' '
 
 [directory.substitutions]
-'Documents' = '󰈙 '
 'Downloads' = ' '
+'Documents' = '󰈙 '
 'Music' = '󰝚 '
 'Pictures' = ' '
-'Video' = '󱜏 '
+'Videos' = '󰨜 '
 'Coding' = ' '
 'Shared' = ' '
 'Public' = ' '
+'_tmp' = '󰍻 '
+'tmp' = ' '
 
 [git_branch]
 symbol = ''
-style = 'color_blue'
+style = 'vesper'
 format = '[ $symbol $branch]($style)'
 
 [git_status]
@@ -121,40 +133,60 @@ style = 'color_pink'
 
 [c]
 symbol = ' '
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_sblue)]($style)'
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_sblue)]'
 
 [cpp]
 symbol = ' '
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]'
 
 [rust]
-symbol = ''
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_rust)]($style)'
+symbol = '🦀  '
+format = '[${symbol}${version}](fg:color_rust)'
+detect_files = ['Cargo.toml', 'Cargo.lock', 'rustfmt.toml']
+version_format = '${raw}'
 
 [golang]
 symbol = ''
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_nblue)]($style)'
+format = '[ $symbol( $version)](fg:color_nblue)'
 
 [python]
-symbol = ''
-format = '[[ $symbol( $virtualenv) ](fg:color_fg0 bg:color_blue)]($style)'
+format = "[${symbol}${version}]($style)"
+symbol = "[$virtualenv](bold fg:color_red) [ ⌉](bold color_blue)⌊"
+version_format = "${raw}"
+style = "bold color_yellow"
 
 [docker_context]
 symbol = ''
 style = 'bg:color_bg3'
-format = '[[ $symbol( $context) ](fg:#83a598 bg:color_blue)]($style)'
+format = '[$symbol( $context) ](fg:#83a598 bg:color_blue)'
+
+[nix_shell]
+style = 'bold italic dimmed blue'
+symbol = '✶'
+format = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)'
+impure_msg = '[⌽](bold dimmed red)'
+pure_msg = '[⌾](bold dimmed green)'
+unknown_msg = '[◌](bold dimmed ellow)'
+
+[lua]
+format = " [lua](italic) [${symbol}${version}]($style)"
+version_format = "${raw}"
+symbol = " "
+style = "bold bright-yellow"
+
+[nodejs]
+format = " [node](italic) [◫ ($version)](bold bright-green)"
+version_format = "${raw}"
+detect_files = ["package-lock.json", "yarn.lock"]
+detect_folders = ["node_modules"]
+detect_extensions = []
 
 [cmd_duration]
-format = '[ $duration]($style)'
+format = '[ $duration](italic fg:color_fg0)'
 style = 'color_green'
 
-  ## [character]
-  ## success_symbol = '[❯](color_purple)'
-  ## error_symbol = '[❯](color_red)'
-  ## vimcmd_symbol = '[❮](color_sblue)'
-
 [character]
-# success_symbol = " [](color_purple)"
+## success_symbol = '[❯](color_purple)'
 success_symbol = " [](color_purple)"
 error_symbol = " [](color_red)"
 vicmd_symbol = "[  ](color_sblue)"

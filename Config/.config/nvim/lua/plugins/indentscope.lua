@@ -2,11 +2,13 @@ return {
   "echasnovski/mini.indentscope",
   version = false,
   event = { "BufReadPre", "BufNewFile" },
+
   config = function()
     local indentscope = require("mini.indentscope")
 
     indentscope.setup({
-      symbol = "│",
+      -- symbol = "│",
+      symbol = '╎',
       options = { try_as_border = true },
       draw = {
         delay = 100,

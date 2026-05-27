@@ -3,7 +3,7 @@
         "extraArgs": []
     },
     "wallpaper": {
-        "postHook": "echo $WALLPAPER_PATH"
+        "postHook": "sudo /usr/share/sddm/themes/caelestia/scripts/sync.sh --posthook"
     },
     "theme": {
         "enableTerm": false,
@@ -13,7 +13,8 @@
         "enableFuzzel": true,
         "enableBtop": true,
         "enableGtk": true,
-        "enableQt": true
+        "enableQt": true,
+        "postHook": "sudo /usr/share/sddm/themes/caelestia/scripts/sync.sh --posthook"
     },
     "toggles": {
         "communication": {

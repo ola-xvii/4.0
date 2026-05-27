@@ -8,27 +8,29 @@ require("lspconfig")
 
 -- Define and enable LSP servers using the new vim.lsp.config API
 local servers = {
-  "bashls",
-  "rust_analyzer",
-  "pyright",
-  "ts_ls",    -- TypeScript and TSX support
-  "cssls",       -- CSS support
-  "html",        -- HTML support
-  "lua_ls"       -- Lua support
+	"bashls",
+	"gofmt", -- golang formatter
+	"golines", -- golang formatter
+	"pyright",
+	"rust_analyzer",
+	"ts_ls", -- TypeScript and TSX support
+	"cssls",
+	"html", -- HTML support
+	"lua_ls", -- Lua support
 }
 
 -- Configure each server
 for _, server in ipairs(servers) do
-  vim.lsp.config(server, {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = server == "ts_ls" and {
-      "typescript",
-      "javascript",
-      "typescriptreact",
-      "javascriptreact"
-    } or nil,
-  })
+	vim.lsp.config(server, {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		filetypes = server == "ts_ls" and {
+			"typescript",
+			"javascript",
+			"typescriptreact",
+			"javascriptreact",
+		} or nil,
+	})
 end
 
 -- Enable all configured servers
@@ -36,7 +38,7 @@ vim.lsp.enable(servers)
 
 -- Optional: TypeScript/TSX specific enhancements
 vim.lsp.config("tsserver", {
-  root_dir = require('lspconfig.util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+	root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
 })
 
 -- -- Optional: Python specific configuration
@@ -52,7 +54,7 @@ vim.lsp.config("tsserver", {
 --   }
 -- })
 
--- -- Optional: Rust specific configuration  
+-- -- Optional: Rust specific configuration
 -- vim.lsp.config("rust_analyzer", {
 --   settings = {
 --     ['rust-analyzer'] = {

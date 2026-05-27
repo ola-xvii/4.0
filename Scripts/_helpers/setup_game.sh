@@ -60,7 +60,7 @@ DEPS=(
   winetricks wine-gaming-dependencies
 
   # Launchers & tools
-  lutris umu-launcher steam bottles
+  lutris umu-launcher steam 
   gamemode gamescope mangohud
 )
 

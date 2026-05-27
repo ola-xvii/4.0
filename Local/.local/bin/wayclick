@@ -12,10 +12,10 @@ trap cleanup EXIT INT TERM
 # --- CONFIGURATION ---
 readonly APP_NAME="wayclick"
 readonly CONFIG_ENABLE_TRACKPADS="false"  # Set to "true" to enable trackpad clicks, "false" to ignore them
-readonly BASE_DIR="$HOME/contained_apps/uv/$APP_NAME"
-readonly VENV_DIR="$BASE_DIR/.venv"
+readonly BASE_DIR="$HOME/.local/share/$APP_NAME"
+readonly VENV_DIR="$HOME/env_02"
 readonly RUNNER_SCRIPT="$BASE_DIR/runner.py"
-readonly CONFIG_DIR="$HOME/.config/wayclick"
+readonly CONFIG_DIR="$HOME/.config/wayclick/cherry_mx_brown_abs"
 
 # --- ANSI COLORS ---
 readonly C_RED=$'\033[1;31m'

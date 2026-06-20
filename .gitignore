@@ -7,4 +7,5 @@
 Local/.local/
 !Local/.local/bin/playit
 !Local/.local/bin/wayclick
+!Local/.local/bin/wayclick-v2
 !Local/.local/share/fonts

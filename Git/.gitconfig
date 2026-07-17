@@ -1,6 +1,12 @@
 [user]
 	email = 165085183+0LA-X@users.noreply.github.com
-	name = 0LA-X
+	name = ola-xvii
 
 [init]
 	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

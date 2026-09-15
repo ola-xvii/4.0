@@ -34,9 +34,11 @@ LOG_FILE="$LOG_DIR/setup.log"
 NONINTERACTIVE="${NONINTERACTIVE:-0}"
 ENABLE_THIRD_PARTY_STEAM_LIBS="${ENABLE_THIRD_PARTY_STEAM_LIBS:-0}"
 INSTALL_GAMING_32BIT="${INSTALL_GAMING_32BIT:-0}"
+ENABLE_CHAOTIC_AUR="${ENABLE_CHAOTIC_AUR:-0}"          # <-- new
 
 export DOT_REPO DOT_DIR
 export NONINTERACTIVE ENABLE_THIRD_PARTY_STEAM_LIBS INSTALL_GAMING_32BIT
+export ENABLE_CHAOTIC_AUR                               # <-- new
 
 FAILED_STAGES=()
 
@@ -319,6 +321,7 @@ run_helpers() {
     run_helper "Audio & Bluetooth" "$HELPER_DIR/setup_audio.sh"       || FAILED_STAGES+=("Audio & Bluetooth")
     run_helper "Gaming"            "$HELPER_DIR/setup_game.sh"        || FAILED_STAGES+=("Gaming")
     run_helper "Boot Themes"       "$HELPER_DIR/setup_boot_themes.sh" || FAILED_STAGES+=("Boot Themes")
+    run_helper "Chaotic-AUR kernels" "$HELPER_DIR/setup_kernels.sh"   || FAILED_STAGES+=("Chaotic-AUR kernels")
 }
 
 # ---- Summary -----------------------------------------------------------------

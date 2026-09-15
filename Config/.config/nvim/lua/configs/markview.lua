@@ -1,266 +1,183 @@
+local presets = require("markview.presets")
+
+---@type markview.config
 local options = {
-  block_quotes = {
+
+  -- ╔══════════════════════════════╗
+  -- ║  PREVIEW BEHAVIOUR           ║
+  -- ╚══════════════════════════════╝
+  preview = {
+    -- Which modes trigger live preview rendering ==> "n" = normal, "i" = insert, "v" = visual, "c" = command
+    modes = { "n", "no", "c" },
+
+    -- Which modes trigger hybrid mode (show raw markdown near cursor)
+    hybrid_modes = { "i" },
+
+    -- Debounce delay in ms before re-rendering after a change
+    debounce = 50,
+
+    -- Icon provider: "internal" (built-in), "mini" (mini.icons), "devicons"
+    icon_provider = "internal",
+
+    -- Max buffer lines to render (performance cap)
+    max_buf_lines = 1000,
+
+    -- Splitview window options (used with :Markview splitToggle)
+    splitview_winopts = {
+      width = 80,
+      split = "right",
+    },
+  },
+
+  -- ╔══════════════════════════════╗
+  -- ║  MARKDOWN                    ║
+  -- ╚══════════════════════════════╝
+  markdown = {
     enable = true,
-    wrap = true,
 
-    default = {
-      border = "▋",
-      hl = "MarkviewBlockQuoteDefault"
-    },
+    -- ── Headings ──────────────────────────────────────────────────────────
+    -- Use a built-in preset OR define manually
+    -- Presets: glow | glow_center | slanted | arrowed | simple | marker
+    headings = presets.headings.glow,
 
-    ["ABSTRACT"] = {
-      preview = "󱉫 Abstract",
-      hl = "MarkviewBlockQuoteNote",
+    -- ── Block Quotes & Callouts ────────────────────────────────────────────
+    block_quotes = {
+      enable = true,
+      wrap = true, -- ✅ this enables text wrap support inside block quotes
 
-      title = true,
-      icon = "󱉫",
-    },
-    ["SUMMARY"] = {
-      hl = "MarkviewBlockQuoteNote",
-      preview = "󱉫 Summary",
-
-      title = true,
-      icon = "󱉫",
-    },
-    ["TLDR"] = {
-      hl = "MarkviewBlockQuoteNote",
-      preview = "󱉫 Tldr",
-
-      title = true,
-      icon = "󱉫",
-    },
-    ["TODO"] = {
-      hl = "MarkviewBlockQuoteNote",
-      preview = " Todo",
-
-      title = true,
-      icon = "",
-    },
-    ["INFO"] = {
-      hl = "MarkviewBlockQuoteNote",
-      preview = " Info",
-
-      custom_title = true,
-      icon = "",
-    },
-    ["SUCCESS"] = {
-        hl = "MarkviewBlockQuoteOk",
-        preview = "󰗠 Success",
-
-        title = true,
-        icon = "󰗠",
-    },
-    ["CHECK"] = {
-        hl = "MarkviewBlockQuoteOk",
-        preview = "󰗠 Check",
-
-        title = true,
-        icon = "󰗠",
-    },
-    ["DONE"] = {
-        hl = "MarkviewBlockQuoteOk",
-        preview = "󰗠 Done",
-
-        title = true,
-        icon = "󰗠",
-    },
-    ["QUESTION"] = {
-        hl = "MarkviewBlockQuoteWarn",
-        preview = "󰋗 Question",
-
-        title = true,
-        icon = "󰋗",
-    },
-    ["HELP"] = {
-        hl = "MarkviewBlockQuoteWarn",
-        preview = "󰋗 Help",
-
-        title = true,
-        icon = "󰋗",
-    },
-    ["FAQ"] = {
-        hl = "MarkviewBlockQuoteWarn",
-        preview = "󰋗 Faq",
-
-        title = true,
-        icon = "󰋗",
-    },
-    ["FAILURE"] = {
-        hl = "MarkviewBlockQuoteError",
-        preview = "󰅙 Failure",
-
-        title = true,
-        icon = "󰅙",
-    },
-    ["FAIL"] = {
-        hl = "MarkviewBlockQuoteError",
-        preview = "󰅙 Fail",
-
-        title = true,
-        icon = "󰅙",
-    },
-    ["MISSING"] = {
-        hl = "MarkviewBlockQuoteError",
-        preview = "󰅙 Missing",
-
-        title = true,
-        icon = "󰅙",
-    },
-    ["DANGER"] = {
-        hl = "MarkviewBlockQuoteError",
-        preview = " Danger",
-
-        title = true,
-        icon = "",
-    },
-    ["ERROR"] = {
-        hl = "MarkviewBlockQuoteError",
-        preview = " Error",
-
-        title = true,
-        icon = "",
-    },
-    ["BUG"] = {
-        hl = "MarkviewBlockQuoteError",
-        preview = " Bug",
-
-        title = true,
-        icon = "",
-    },
-    ["EXAMPLE"] = {
-        hl = "MarkviewBlockQuoteSpecial",
-        preview = "󱖫 Example",
-
-        title = true,
-        icon = "󱖫",
-    },
-    ["QUOTE"] = {
+      -- Default style for plain > quotes (no callout type)
+      default = {
+        border = "▋",
         hl = "MarkviewBlockQuoteDefault",
-        preview = " Quote",
+      },
 
-        title = true,
-        icon = "",
-    },
-    ["CITE"] = {
-        hl = "MarkviewBlockQuoteDefault",
-        preview = " Cite",
-
-        title = true,
-        icon = "",
-    },
-    ["HINT"] = {
-        hl = "MarkviewBlockQuoteOk",
-        preview = " Hint",
-
-        title = true,
-        icon = "",
-    },
-    ["ATTENTION"] = {
-        hl = "MarkviewBlockQuoteWarn",
-        preview = " Attention",
-
-        title = true,
-        icon = "",
-    },
-
-    ["NOTE"] = {
+      -- ✅ Callouts go HERE, inside block_quotes
+      ["NOTE"] = {
         hl = "MarkviewBlockQuoteNote",
         preview = "󰋽 Note",
-
         title = true,
         icon = "󰋽",
-    },
-    ["TIP"] = {
+      },
+      ["TIP"] = {
         hl = "MarkviewBlockQuoteOk",
-        preview = " Tip",
-
+        preview = " Tip",
         title = true,
-        icon = "",
+        icon = "",
+      },
+      ["IMPORTANT"] = {
+        hl = "MarkviewBlockQuoteSpecial",
+        preview = " Important",
+        title = true,
+        icon = "",
+      },
+      ["WARNING"] = {
+        hl = "MarkviewBlockQuoteWarn",
+        preview = " Warning",
+        title = true,
+        icon = "",
+      },
+      ["CAUTION"] = {
+        hl = "MarkviewBlockQuoteError",
+        preview = "󰳦 Caution",
+        title = true,
+        icon = "󰳦",
+      },
+      ["TODO"] = {
+        hl = "MarkviewBlockQuoteNote",
+        preview = " Todo",
+        title = true,
+        icon = "",
+      },
+      ["BUG"] = {
+        hl = "MarkviewBlockQuoteError",
+        preview = " Bug",
+        title = true,
+        icon = "",
+      },
+      ["SUCCESS"] = {
+        hl = "MarkviewBlockQuoteOk",
+        preview = "󰗠 Success",
+        title = true,
+        icon = "󰗠",
+      },
     },
-    ["IMPORTANT"] = {
-      hl = "MarkviewBlockQuoteSpecial",
-      preview = " Important",
 
-      title = true,
-      icon = "",
+    -- ── Code Blocks ───────────────────────────────────────────────────────
+    code_blocks = {
+      enable = true,
+      style = "simple", -- "simple" | "block"
+      hl = "MarkviewCode",
+
+      -- Show language icon next to the code block label
+      language_direction = "right",
+
+      -- Minimum width of the code block background
+      min_width = 60,
+      pad_amount = 3, -- spaces of padding on each side
     },
-    ["WARNING"] = {
-      hl = "MarkviewBlockQuoteWarn",
-      preview = " Warning",
 
-      title = true,
-      icon = "",
+    -- ── Tables ────────────────────────────────────────────────────────────
+    -- Preset: none | single | double | rounded | solid
+    tables = presets.tables.rounded,
+
+    -- ── Horizontal Rules ──────────────────────────────────────────────────
+    -- Preset: thin | thick | double | dashed | dotted | solid | arrowed
+    horizontal_rules = presets.horizontal_rules.double,
+
+    -- ── List Items ────────────────────────────────────────────────────────
+    list_items = {
+      enable = true,
+      indent_size = 2,
+      shift_width = 2,
+
+      marker_minus = {
+        add_padding = true, -- enables wrap support for list items
+        text = "",
+        hl = "MarkviewListItemMinus",
+      },
+      marker_plus = {
+        add_padding = true,
+        text = "",
+        hl = "MarkviewListItemPlus",
+      },
+      marker_star = {
+        add_padding = true,
+        text = "",
+        hl = "MarkviewListItemStar",
+      },
     },
-    ["CAUTION"] = {
-      hl = "MarkviewBlockQuoteError",
-      preview = "󰳦 Caution",
-
-      title = true,
-      icon = "󰳦",
-    }
   },
-  -- 
-  headings = {
+
+  -- ╔══════════════════════════════╗
+  -- ║  MARKDOWN INLINE             ║
+  -- ╚══════════════════════════════╝
+  markdown_inline = {
     enable = true,
 
-    heading_1 = {
-      style = "icon",
-      sign = "󰌕 ", sign_hl = "MarkviewHeading1Sign",
-
-      icon = "󰼏  ", hl = "MarkviewHeading1",
-    },
-    heading_2 = {
-      style = "icon",
-      sign = "󰌖 ", sign_hl = "MarkviewHeading2Sign",
-
-      icon = "󰎨  ", hl = "MarkviewHeading2",
-    },
-    heading_3 = {
-      style = "icon",
-
-      icon = "󰼑  ", hl = "MarkviewHeading3",
-    },
-    heading_4 = {
-      style = "icon",
-
-      icon = "󰎲  ", hl = "MarkviewHeading4",
-    },
-    heading_5 = {
-      style = "icon",
-
-      icon = "󰼓  ", hl = "MarkviewHeading5",
-    },
-    heading_6 = {
-      style = "icon",
-
-      icon = "󰎴  ", hl = "MarkviewHeading6",
+    -- Checkboxes: [ ] unchecked, [x] checked
+    checkboxes = {
+      enable = true,
+      checked = {
+        text = "󰗠",
+        hl = "MarkviewCheckboxChecked",
+      },
+      unchecked = {
+        text = "󰄱",
+        hl = "MarkviewCheckboxUnchecked",
+      },
     },
 
-    setext_1 = {
-      style = "decorated",
-
-      sign = "󰌕 ", sign_hl = "MarkviewHeading1Sign",
-      icon = "  ", hl = "MarkviewHeading1",
-      border = "▂"
-    },
-    setext_2 = {
-      style = "decorated",
-
-      sign = "󰌖 ", sign_hl = "MarkviewHeading2Sign",
-      icon = "  ", hl = "MarkviewHeading2",
-      border = "▁"
+    -- Inline code spans (`like this`)
+    inline_codes = {
+      enable = true,
+      hl = "MarkviewCode",
     },
 
-    shift_width = 2,
-
-    org_indent = false,
-    org_indent_wrap = true,
-    org_shift_char = " ",
-    org_shift_width = 2,
-
-    vim.g.markview_dark_bg,
+    -- Hyperlinks
+    hyperlinks = {
+      enable = true,
+    },
   },
-
 }
 
 return options

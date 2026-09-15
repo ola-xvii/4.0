@@ -2,21 +2,17 @@
 #  Session bootstrap   
 #=====================
 if [[ -o interactive ]]; then
-  # -- Launch TMUX
   if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
     tmux attach -t MAIN || tmux new -s MAIN
   fi
-
-  # -- ¯\_(ツ)_/¯
-  pokego -r 6,1,5,8,2,7 -no-title -s ## --name eevee --no-title # jigglypuff - eevee - delcatty - charmeleon - [##  # 1,3,5,7]
-  # fastfetch
+  # -- ¯\_(ツ)_/¯ | fastfetch
+  pokego -r 6,1,5,8,2,7 -s --nt ## [ | eevee - delcatty - charmeleon | 1,3,5,7 | -n charmeleon -s --nt ]
 fi
 
 # # -- Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 
 #[ Completions ]
 fpath+=~/.zfunc   # Custom-completions
@@ -50,14 +46,14 @@ autoload -Uz _zinit
 #[Powerlevel10k]
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+# -- ZVM/zsh-vi-mode
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+
 # # -- Starship
 # zinit ice as"command" from"gh-r" \
 #   atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
 #   atpull"%atclone" src"init.zsh"
 # zinit light starship/starship
-
-# -- ZVM/zsh-vi-mode
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 
 # -- zsh plugins
 zinit light zsh-users/zsh-completions
@@ -112,7 +108,6 @@ done
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
 #============
 #  History
 #============
@@ -138,7 +133,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #[Shell integration]
 eval "$(zoxide init zsh)"
-# eval "$(starship init zsh)"
+# source /usr/share/nvm/init-nvm.sh
 
 #==============
 #  Aliases
@@ -152,6 +147,10 @@ alias -g ......='../../../../..'
 alias c='clear'
 alias x='exit'
 
+if command -v bat >/dev/null; then
+  alias cat ='bat'
+fi
+
 # Listing (eza)
 # -- [Check if eza is installed]
 if command -v eza >/dev/null; then
@@ -164,7 +163,7 @@ if command -v eza >/dev/null; then
 else 
   alias ls='ls --color'
   alias ll='ls -lh --color'
-  alias la='ls --color'
+  alias la='ls -a --color'
 fi
 
 # Trash
@@ -172,18 +171,15 @@ alias tp='trash-put'
 
 # Editor
 alias vi='nvim'
-alias vim='sudo nvim'
-alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR HOME=/root nvim'
+alias vim='nvim'
 alias sudo-vi='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR HOME=/root nvim'
+alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR HOME=/root nvim'
 
 # Git
 alias ga='git add'
 alias gc='git commit -m'
-alias gca='git commit --amend'
 alias gp='git push'
 alias gs='git status'
-alias gss='git status -s'
-alias gr='git restore'
 
 # Wi-Fi
 alias wifilist='nmcli device wifi list'
@@ -193,7 +189,6 @@ alias wificonnect='nmcli device wifi connect --ask'
 # System
 alias pacman='sudo pacman'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-# alias gparted='sudo -E gparted'
 
 # yt-dlp
 alias yt-480='yt-dlp -f "bestvideo[height=480]+bestaudio/best[height=480]"'
@@ -201,7 +196,7 @@ alias yt-720='yt-dlp -f "bestvideo[height=720]+bestaudio/best[height=720]"'
 
 # Session
 alias exit-user='pkill -TERM -u $USER'
-alias logout-user='pkill Hyprland || pkill tmux || loginctl terminate-user $USER'
+# alias logout-user='pkill Hyprland || pkill tmux || loginctl terminate-user $USER'
 
 
 #==========

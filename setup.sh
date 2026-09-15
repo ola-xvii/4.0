@@ -6,7 +6,7 @@ set -euo pipefail
 # =============================================================================
 
 DOT_REPO="https://github.com/0LA-X/4.0.git"
-DOT_DIR="$HOME/.4.0
+DOT_DIR="$HOME/4.0"
 SCR_DIR="$DOT_DIR/Scripts/_helpers"
 YAY_DIR="/tmp/yay"
 
@@ -33,32 +33,33 @@ PACMAN_PKGS=(
   # ---- Core Dev Tools ----
   cmake clang lld llvm
   gcc gdb meson ninja
+  uv rustup lldb git 
   nodejs-lts-iron npm
   python python-pip python-uv python-virtualenv
-  uv rustup lldb
-  git stow tree-sitter-cli pkgfile
+  stow tree-sitter-cli pkgfile
 
   # ---- Utilities ----
   btop nvtop curl wget
   duf dysk impala
   fd ripgrep ncdu fzf jq pv
-  man-db rsync tldr
+  man-db rsync tldr qbittorrent
   tmux nvim uwsm zoxide
 
   # ---- File Archiving ----
   7zip cdrtools squashfs-tools
-  unarchiver unzip unrar
+  unarchiver unzip unrar 
 
   # ---- System Tools ----
+  samba xdg-user-dirs ufw
   acpi acpid brightnessctl
+  udisks2 udiskie usbutils
   cifs-utils cpu-x cpupower tuned-ppd
   ddcutil geoclue gammastep polkit-gnome
-  samba xdg-user-dirs ufw
-  udisks2 udiskie usbutils
 
   # ---- Terminal Apps ----
-  kitty eza fastfetch chafa trash-cli
-
+  kitty ghostty trash-cli
+  eza fastfetch chafa 
+  
   # ---- Media ----
   ffmpeg ffmpegthumbnailer
   imagemagick mpv mpv-mpris
@@ -67,9 +68,9 @@ PACMAN_PKGS=(
 
   # ---- Hyprland Ecosystem ----
   hyprland hypridle hyprlock
-  hyprpolkitagent xdg-desktop-portal-gtk
+  xdg-desktop-portal-gtk
   xdg-desktop-portal-hyprland
-  firefox
+  loupe papers
 
   # ---- File Managers ----
   nautilus yazi
@@ -94,6 +95,9 @@ AUR_PKGS=(
 
   # ---- Apps ----
   bazarr breezy file-roller
+  spotify libreoffice-fresh
+  zen-browser-bin terraria-server 
+  flaresolverr-bin  suwayomi-server-bin
 )
 
 
@@ -227,7 +231,7 @@ backup_and_clear_conflicts() {
 
   log "Backing up ~/.config to $backup_dir ..."
   mkdir -p "$backup_dir"
-  cp -a "$HOME/.config/." "$backup_dir/" \
+  cp -a "$HOME/.config/*" "$backup_dir/" \
     || die "Failed to back up ~/.config — aborting to protect your data."
   ok "Backup saved to $backup_dir"
 
@@ -270,7 +274,7 @@ stow_dots() {
     || sudo pacman -S --needed --noconfirm stow \
     || die "Failed to install stow."
 
-  mkdir -p "$HOME"/{.config/XX,.local/bin,.local/XY}
+  mkdir -p "$HOME"/{.config/XX,.local/bin/XY,.local/share/XZ}
 
   cd "$DOT_DIR" || die "Cannot cd into $DOT_DIR"
 
@@ -316,10 +320,10 @@ run_helper() {
 }
 
 helper_scripts() {
-  run_helper "TMUX & TPM"       "$SCR_DIR/tpm.sh"
-  run_helper "ZSH"              "$SCR_DIR/setup_zsh.sh"
-  run_helper "Audio & Bluetooth" "$SCR_DIR/setup_audio.sh"
-  run_helper "Boot Themes"      "$SCR_DIR/setup_boot_themes.sh"
+  run_helper "TMUX & TPM"         "$SCR_DIR/tpm.sh"
+  run_helper "ZSH"                "$SCR_DIR/setup_zsh.sh"
+  run_helper "Audio & Bluetooth"  "$SCR_DIR/setup_audio.sh"
+  run_helper "Boot Themes"        "$SCR_DIR/setup_boot_themes.sh"
 }
 
 
@@ -330,10 +334,10 @@ MAIN() {
   show_header
   check_system
   system_update
-  setup_dotfiles
+  # setup_dotfiles
   ensure_yay
   install_pkgs
-  stow_dots
+ #  stow_dots
   helper_scripts
 
   ok "Setup complete! Log saved to $LOG_FILE"

@@ -91,7 +91,7 @@ float easeClamped(float x) {
 }
 
 // Trail animation duration in seconds
-const float DURATION = 0.5;
+const float DURATION = 0.03;
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     // Calculate animation progress with easing

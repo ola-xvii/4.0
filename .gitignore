@@ -4,6 +4,14 @@
 *_bak
 *_alt
 
+*-bak
+*-alt
+
+Config/.config/caelestia/monitors
+Config/.config/yt-dlp/file.txt
+
+FIXES
+
 Local/.local/
 !Local/.local/bin/playit
 !Local/.local/bin/wayclick

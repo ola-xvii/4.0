@@ -1,42 +1,32 @@
 # ====================
-#   Ghostty Config # JetBrainsMono - CaskaydiaCove
+#   Ghostty Config   # CaskaydiaCove - Electroharmonix
 # ====================
-font-family = JetBrainsMono Nerd Font  
+font-family = JetBrainsMono Nerd Font Propo
 font-size = 15
-
-#[ Cursor - #FFFF33 - #00CCFF - #FF073A - #39FF14 - #B026FF]
-cursor-color = #B026FF
-cursor-text = #000000
-cursor-style = block
-cursor-style-blink = true
-
-background-opacity = 0.85
+ 
+background =  #000000
+background-opacity = 0.80
 
 window-padding-x = 5
 window-padding-y = 5
 
+#[ Cursor - #FFFF33 - #00CCFF - #FF6C00 - #39FF14 - #B026FF - #FF073A ]
+cursor-color = #FF6C00
+cursor-text = #000000
+
 #[ MISC ]
-shell-integration = detect
-bell-features = title
- 
 gtk-single-instance = true
 window-decoration = false
 confirm-close-surface = false
 
-#[ THEMES - axgruv - mono - Vesper - Matte Black - Mathias - Black Metal (Dark Funeral) ] 
-theme = "Black Metal"
-# theme = "Gruvbox Dark Hard"
-# theme = "Builtin Pastel Dark"
-# theme = ""
+#[ THEMES - axgruv / Earthsong / Gruvbox Material Dark | Matte Black - Mathias - TokyoNight Night] 
+theme = "Earthsong"
 
 #[ Shaders_Main ]
-custom-shader-animation = always
+# custom-shader = ./shaders/bloom025.glsl
+custom-shader = ./shaders/cursor_smear_fade.glsl
 custom-shader = ./shaders/cursor_blaze_no_trail.glsl
 custom-shader = ./shaders/ripple_rectangle_cursor.glsl
-custom-shader = ./shaders/cursor_smear_fade.glsl
-custom-shader = ./shaders/cursor_warp.glsl
-custom-shader = ./shaders/bloom025.glsl
-
 
 # [ Keybindings ]
 keybind = ctrl+space>r=reload_config
@@ -44,19 +34,3 @@ keybind = ctrl+space>r=reload_config
 keybind = ctrl+space>n=new_window
 keybind = ctrl+space>t=new_tab
 keybind = ctrl+space>q=close_tab
-
-#keybind = shift+alt+h=previous_tab
-#keybind = shift+alt+l=next_tab
-
-#keybind = ctrl+space>equal=equalize_splits
-
-# [Split Navigation]
-#keybind = ctrl+space>h=new_split:left
-#keybind = ctrl+space>j=new_split:down
-#keybind = ctrl+space>k=new_split:up
-#keybind = ctrl+space>l=new_split:right
-
-#keybind = alt+h=goto_split:left
-#keybind = alt+j=goto_split:down
-#keybind = alt+k=goto_split:up
-#keybind = alt+l=goto_split:right

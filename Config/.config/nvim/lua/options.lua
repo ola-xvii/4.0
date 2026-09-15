@@ -31,24 +31,24 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+
+-- -- -- -- -->
 local o = vim.opt
--- add yours here!
+
+-- Enable spell checker globally
+-- o.spell = true
+-- o.spelllang = { "en_gb" }
+
+-- Blinking Cursor
 o.termguicolors = true -- Enable true color support
-o.guicursor = "i-n-c-sm:block-blinkwait700-blinkon400-blinkoff250"
 o.relativenumber = true -- Show relative numbers
 o.showmatch = true -- Highlight matching brackets
 o.autoread = true -- Auto-reload file if changed outside
 
-
 -- CursorLine
-o.cursorline = true
+o.cursorline = false
 o.cursorlineopt ='both' -- to enable cursorline!
 vim.cmd([[
-  highlight CursorLine ctermbg=DarkGrey guibg=#2a2a2a
-  highlight CursorLineNr ctermbg=DarkGrey guibg=#2a2a2a
+  highlight CursorLine ctermbg=236 guibg=#313244
+  highlight CursorLineNr ctermbg=236 guibg=#3d3d3d ctermfg=White guifg=#ffffff
 ]])
-
-
--- Enable spell checker globally
--- o.spell = true
--- o.spelllang = { "en_ng" }

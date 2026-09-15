@@ -39,13 +39,9 @@ return {
 			-- Mason LSP config (your existing configuration preserved)
 			mason_lspconfig.setup({
 				ensure_installed = {
-					"lua_ls",
-					"bashls",
-					"gopls",
-					"html",
-					"pyright",
-					"rust_analyzer",
-					"ts_ls",
+					"lua_ls", "bashls",
+					"gopls", "html", "ts_ls",
+					"pyright", "rust_analyzer",
 				},
 				automatic_installation = true,
 			})
@@ -73,19 +69,16 @@ return {
 		end,
 	},
 
-	-- test new blink
-	-- { import = "nvchad.blink.lazyspec" },
-
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = {
 			ensure_installed = {
-				"vim", "vimdoc",
 				"lua", "bash", "nix",
-				"go", "gosum", "rust", "python",
-				"html", "css", "latex", "typst", "yaml",
-				"markdown", "markdown_inline",
 				"jsx", "tsx", "typescript",
+				"markdown", "markdown_inline",
+				"vim", "vimdoc", "yaml", "toml",
+				"go", "gosum", "rust", "python",
+				"html", "css", "latex", "typst",
 			},
 		},
 	},
@@ -93,14 +86,21 @@ return {
   -- -- Markdown Preview
   {
     "OXY2DEV/markview.nvim",
-    ft = "markdown",   -- Lazy-load: only activates when you open a .md file
+    lazy = false,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
 
-    dependencies = {
-      -- "saghen/blink.cmp",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = require("configs.markview"),
+    opts = function()
+      return require("configs.markview")
+    end,
   },
+
+  --
+  {
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
+  }
 
   -- END
 }

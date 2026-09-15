@@ -1,5 +1,6 @@
 # Save into Videos folder
---paths "$HOME/Videos/yt-dlp"
+--paths "$HOME/Videos/py4e"
+# --paths "$HOME/_tmp/yt-dlp"
 
 # Use a clean output template
 --output "%(title)s.%(ext)s"

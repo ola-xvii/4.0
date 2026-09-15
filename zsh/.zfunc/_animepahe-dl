@@ -1,0 +1,11 @@
+
+#compdef animepahe-dl
+
+_animepahe_dl() {
+    local context state line
+    typeset -A opt_args
+
+    _arguments -C         '(-h --help)'{-h,--help}'[Show help message]'         '(-n --name)'{-n,--name}'[Name of anime to search]:anime name:'         '(-e --episodes)'{-e,--episodes}'[Episode numbers to download]:episodes:'         '(-q --quality)'{-q,--quality}'[Video quality]:quality:(best 1080 720 480 360)'         '(-a --audio)'{-a,--audio}'[Audio language]:audio:(jpn eng)'         '(-t --threads)'{-t,--threads}'[Number of download threads]:threads:'         '(-c --concurrent-downloads)'{-c,--concurrent-downloads}'[Concurrent downloads]:concurrent:'         '--updates[Check for new episodes]'         '--manage[Manage anime list]'         '--run-once[Run update check once]'         '--insecure[Disable SSL verification]'         '--m3u8-only[Fetch playlist only]'         '--single[Single selection mode]'         '--gui[Launch GUI]'
+}
+
+_animepahe_dl "$@"

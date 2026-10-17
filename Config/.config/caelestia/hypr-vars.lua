@@ -13,8 +13,8 @@ return {
   windowGapsIn               = 5,
   windowGapsOut              = 10,
 
-  cursorTheme                = "Bibata-Mordern-Amber",
-  cursorSize                 = 38,
+  cursorTheme                = "Bibata-Bee-Mordern",
+  cursorSize                 = 40,
 
   ------------------
   ---- KEYBINDS ----
@@ -31,7 +31,7 @@ return {
 
   -- Window Group
   kbWindowGroupCycleNext     = "ALT + TAB",
-  kbWindowGroupCyclePrev     = "CTRL + SHIFT + ALT + TAB",
+  kbWindowGroupCyclePrev     = "CTRL + ALT + TAB",
   kbUngroup                  = "SUPER + U",
   kbToggleGroup              = "SUPER + Comma",
 
@@ -40,6 +40,7 @@ return {
   kbResizeWindow             = "SUPER + XF86Tools",
   kbWindowPip                = "SUPER + ALT + backslash",
   -- Special workspaces toggles
+  kbMusicWs                  = "SUPER + M",
   kbCommunication            = "SUPER + C",
   kbTodo                     = "SUPER + D",
 
@@ -57,10 +58,10 @@ return {
   kbRecordRegion             = "ALT + Print",
   kbColorPicker              = "SUPER + SHIFT + C",
 
-  -- Clipboard and emoji picker
-  kbClipboardDel             = "SUPER + ALT + H",
-  kbClipboardPasteLatest     = "CTRL + SHIFT + ALT + V",
-  kbEmoji                    = "SUPER + Period",
+  -- -- Clipboard and emoji picker
+  -- kbClipboardDel             = "SUPER + ALT + H",
+  -- kbClipboardPasteLatest     = "CTRL + SHIFT + ALT + V",
+  -- kbEmoji                    = "SUPER + Period",
 
   -- Misc
   kbSession                  = "CTRL + ALT + Delete",

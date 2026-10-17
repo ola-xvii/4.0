@@ -21,9 +21,9 @@
         "enableChromium": true,
         "enableZed": true,
         "enableCava": true,
-        "iconTheme": "Papirus-Dark",
-        "iconThemeLight": "Papirus-Light",
-        "iconThemeDark": "Papirus-Dark",
+        "iconTheme": "Tela-grey",
+        "iconThemeLight": "Tela-grey-light",
+        "iconThemeDark": "Tela-grey-dark",
         "postHook": "echo $SCHEME_NAME $SCHEME_FLAVOUR $SCHEME_MODE $SCHEME_VARIANT $SCHEME_COLOURS"
     },
     "toggles": {
@@ -80,6 +80,13 @@
                 "command": ["obsidian"],
                 "move": true
             }
+        },
+        "game": {
+          "steam": {
+            "enable": true,
+            "match": [{ "title": "steam" }, {"class": "Steam" }],
+            "move": true
+          }
         }
     }
 }

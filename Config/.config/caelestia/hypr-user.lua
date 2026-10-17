@@ -38,22 +38,33 @@ hl.config({
   xwayland = {
     force_zero_scaling = true
   },
+  render = {
+    direct_scanout = 0  -- # or false
+  },
 })
 
 
 -- #[ GTK_THEMING ]
-local i_theme = "Papirus-Dark"
-
+local i_theme = "Papirus-Dark"              -- Tela-grey-dark
+local c_theme = "Bibata-Bee-Modern"
+local c_size = "40"
+local g_theme = "adw-gtk3-dark"               -- adw-gtk3-dark
+--
 hl.on("config.reloaded", function()
+  hl.exec_cmd("sleep 1 && hyprctl setcursor " .. c_theme .. " " .. c_size)
   hl.exec_cmd("sleep 1 && gsettings set org.gnome.desktop.interface icon-theme " .. i_theme)
-  hl.exec_cmd("sleep 1 && gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark")
+  hl.exec_cmd("sleep 1 && gsettings set org.gnome.desktop.interface cursor-theme " .. c_theme)
+  hl.exec_cmd("sleep 1 && gsettings set org.gnome.desktop.interface cursor-size " .. c_size)
+
+  hl.exec_cmd("sleep 1 && gsettings set org.gnome.desktop.interface gtk-theme " .. g_theme)
   hl.exec_cmd("sleep 1 && gsettings set org.gnome.desktop.interface color-scheme prefer-dark")
 end)
 
 
 -- BINDS
 hl.bind("SUPER + ALT + RETURN", hl.dsp.exec_raw("foot"))
-hl.bind("SUPER + G", hl.dsp.exec_raw("lutris"))
+hl.bind("SUPER + I", hl.dsp.exec_raw("lutris"))
+hl.bind("SUPER + B", hl.dsp.exec_raw("blueman-manager"))
 hl.bind("SUPER + K", hl.dsp.exec_raw("uwsm app -- ~/.local/bin/wayclick/dusky_wayclick.sh"))
 
 hl.bind("SUPER + ALT + E", hl.dsp.exec_raw("ghostty -e $SHELL -l -c yazi"))
@@ -64,6 +75,21 @@ hl.bind( "SUPER + SHIFT + R", hl.dsp.exec_cmd("qs -c caelestia kill; sleep .1; c
 -- RULES 
 hl.window_rule({ match = { class = "org.gnome.Papers" }, no_blur = true, opaque = true })
 hl.window_rule({ match = { class = "mpv" }, no_blur = true, opaque = true })
+hl.window_rule({ match = { class = "ai.storyteller.filmcraft" }, no_blur = true, opaque = true })
+
+-- [ specialWS for steam ]
+local fn = require("utils.functions")
+hl.bind("SUPER + G", fn.toggle("game"))
+
+
+-- # Replace 'wine_app_class' with the actual class name found via `hyprctl clients`
+-- windowrulev2 = noinitialfocus, class:^(wine_app_class)\$, floating:1
+
+-- # Prevent Wine popups/tooltips from stealing focus and triggering a flicker loop
+-- windowrulev2 = noinitialfocus, class:^(wine)$, title:^(win.*)$
+-- windowrulev2 = float, class:^(wine)$, title:^(win.*)$
+
+-- export WINEOPTIONS="-winewayland"
 
 -- -- ENV
 -- hl.env("env = QT_FFMPEG_DECODING_HW_DEVICE_TYPES", "none")

@@ -32,7 +32,9 @@ if hl.plugin.hyprglass then
     saturation = 1,
     vibrancy = 0.8,
     vibrancy_darkness = 1,
-    adaptive_boost = 0.5
+    adaptive_boost = 0.5,
+    light = { brightness = 1.3 },
+    dark = { brightness = 1.0 },
   })
 
   hg.preset("apple", {
@@ -59,6 +61,8 @@ if hl.plugin.hyprglass then
   hl.window_rule({ match = { class = "com.rtosta.zapzap" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { class = "Spotify" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { class = "org.gnome.Papers" }, tag = "+hyprglass_disabled" })
+  hl.window_rule({ match = { class = "ai.storyteller.filmcraft" }, tag = "+hyprglass_disabled" })
+
 
   hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { title = "Picture-in-Picture" }, tag = "+hyprglass_disabled" })
@@ -66,19 +70,20 @@ if hl.plugin.hyprglass then
   hl.window_rule({ match = { title = "Download" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { title = "btop" }, tag = "+hyprglass_disabled" })
 
+
   hl.window_rule({ match = { class = "steam" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { class = "steam_proton" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { class = "net.lutris.Lutris" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { class = "dotnet" }, tag = "+hyprglass_disabled" })
 
+
   hl.window_rule({ match = { class = "bottles" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { class = "com.usebottles.bottles" }, tag = "+hyprglass_disabled" })
-  -- hl.window_rule({ match = { title = "Terraria:*" }, tag = "+hyprglass_disabled" })
   hl.window_rule({ match = { class = "org.vinegarhq.Sober" }, tag = "+hyprglass_disabled" })
 
   -- -- -- -- 
   hg.config({
-    default_theme = "light",
+    default_theme = "dark",
     default_preset = "glass",
     layers = { enabled = true },
   })

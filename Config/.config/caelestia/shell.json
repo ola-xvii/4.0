@@ -2,7 +2,7 @@
     "appearance": {
         "font": {
             "body": {
-                "family": "GoogleSansFlex",
+                "family": "Righteous",
                 "large": {
                     "italic": false,
                     "size": 16,
@@ -28,12 +28,12 @@
                     "weight": 400
                 }
             },
-            "clock": "Rubik",
+            "clock": "Electroharmonix Nerd Font",
             "headline": {
-                "family": "GoogleSansFlex",
+                "family": "Electroharmonix Nerd Font",
                 "large": {
                     "italic": false,
-                    "size": 32,
+                    "size": 20,
                     "vaxes": {
                         "ROND": 25
                     },
@@ -140,7 +140,7 @@
             },
             "scale": 1,
             "title": {
-                "family": "GoogleSansFlex",
+                "family": "Righteous",
                 "large": {
                     "italic": false,
                     "size": 22,
@@ -166,24 +166,22 @@
                     "weight": 500
                 }
             },
-            "workspaces": "Rubik"
+            "workspaces": "Righteous"
         },
         "transparency": {
-            "base": 0.85,
-            "enabled": false,
-            "layers": 0.4
+            "enabled": true
         }
     },
     "background": {
         "desktopClock": {
             "background": {
-                "blur": false,
+                "blur": true,
                 "enabled": true,
                 "opacity": 0.6997696314102564
             },
             "enabled": true,
             "invertColors": false,
-            "position": "bottom-left",
+            "position": "top-right",
             "scale": 1,
             "shadow": {
                 "blur": 0.2998798076923077,
@@ -191,66 +189,78 @@
                 "opacity": 0.5973657852564103
             }
         },
-        "enabled": true,
-        "visualiser": {
-            "autoHide": true,
-            "blur": false,
-            "enabled": false,
-            "rounding": 1,
-            "spacing": 1
-        },
         "wallpaperEnabled": true
     },
     "bar": {
+        "activeWindow": {
+            "compact": false,
+            "inverted": false,
+            "showOnHover": true
+        },
         "clock": {
-            "background": false,
-            "showDate": true,
-            "showIcon": false
+            "background": true,
+            "showDate": false,
+            "showIcon": true,
+            "showSeconds": false
         },
         "persistent": false,
+        "popouts": {
+            "activeWindow": true
+        },
+        "statusIcons": [
+            {
+                "enabled": true,
+                "id": "audio"
+            },
+            {
+                "enabled": false,
+                "id": "microphone"
+            },
+            {
+                "enabled": true,
+                "id": "network"
+            },
+            {
+                "enabled": true,
+                "id": "bluetooth"
+            },
+            {
+                "enabled": true,
+                "id": "battery"
+            }
+        ],
         "tray": {
+            "background": false,
+            "compact": false,
             "recolour": false
         },
         "workspaces": {
-            "activeIndicator": true,
-            "activeLabel": "󰐼",
-            "activeTrail": false,
-            "capitalisation": "Preserve",
-            "label": "🔘",
-            "maxWindowIcons": 0,
             "occupiedBg": false,
-            "occupiedLabel": "󰮯",
-            "perMonitorWorkspaces": true,
+            "perMonitor": true,
+            "showUnoccupied": true,
             "showWindows": true,
-            "showWindowsOnSpecialWorkspaces": true,
-            "shown": 5,
-            "specialWorkspaceIcons": [
-            ],
-            "windowIcons": [
-                {
-                    "icon": "sports_esports",
-                    "regex": "steam(_app_(default|[0-9]+))?"
-                }
-            ]
+            "showWindowsOnSpecialWorkspaces": true
         }
     },
     "dashboard": {
-        "dragThreshold": 50,
-        "showMedia": true,
-        "showWeather": false
+        "enabled": true,
+        "showClockSeconds": false,
+        "showOnHover": true,
+        "showWeather": true
     },
     "general": {
         "apps": {
             "terminal": [
-                "kitty"
+                "/usr/bin/ghostty",
+                "--gtk-single-instance=true"
             ]
         }
     },
     "launcher": {
-        "maxWallpapers": 9
+        "maxWallpapers": 10
     },
     "nexus": {
-        "networkRescanInterval": 15000
+        "networkRescanInterval": 5000
     },
     "paths": {
         "lockNoNotifsPic": "root:/assets/dino.png",
@@ -261,16 +271,16 @@
         "wallpaperDir": "/home/ola-x/Pictures/WALLS"
     },
     "services": {
-        "maxVolume": 1.25
+        "maxVolume": 1.1
     },
     "utilities": {
         "quickToggles": [
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "wifi"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "bluetooth"
             },
             {
@@ -286,7 +296,7 @@
                 "id": "gameMode"
             },
             {
-                "enabled": false,
+                "enabled": true,
                 "id": "dnd"
             },
             {
@@ -295,10 +305,8 @@
             }
         ],
         "toasts": {
-            "capsLockChanged": false,
-            "kbLayoutChanged": false,
-            "nowPlaying": true,
-            "numLockChanged": false
+            "fullscreen": "all",
+            "nowPlaying": true
         }
     }
 }

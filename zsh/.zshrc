@@ -6,7 +6,7 @@ if [[ -o interactive ]]; then
     tmux attach -t MAIN || tmux new -s MAIN
   fi
   # -- ¯\_(ツ)_/¯ | fastfetch
-  pokego -r 6,1,5,8,2,7 -s --nt ## [ | eevee - delcatty - charmeleon | 1,3,5,7 | -n charmeleon -s --nt ]
+  pokego -r 6,1,5,8,2,7 -s --no-title ## [ | eevee - delcatty - charmeleon | 1,3,5,7 | -n charmeleon -s --no-title ]
 fi
 
 # # -- Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
@@ -15,7 +15,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 #[ Completions ]
-fpath+=~/.zfunc   # Custom-completions
+# fpath+=~/.zfunc   # Custom-completions
+fpath=(~/.zfunc $fpath)
 
 autoload -Uz compinit
 compinit -C       # fast, safe if you trust your plugins
@@ -193,6 +194,7 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 # yt-dlp
 alias yt-480='yt-dlp -f "bestvideo[height=480]+bestaudio/best[height=480]"'
 alias yt-720='yt-dlp -f "bestvideo[height=720]+bestaudio/best[height=720]"'
+alias yt-1080='yt-dlp -f "bestvideo[height=1080]+bestaudio/best[height=1080]"'
 
 # Session
 alias exit-user='pkill -TERM -u $USER'
